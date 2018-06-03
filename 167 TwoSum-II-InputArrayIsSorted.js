@@ -5,6 +5,7 @@
  */
 var twoSum = function(numbers, target) {
     //时间复杂度 O(nlogn)
+    /*
     for (let i = 0; i < numbers.length - 1; i++) {
         const nums1 = numbers[i];
         const nums2 = target - nums1;
@@ -27,4 +28,20 @@ var twoSum = function(numbers, target) {
             return [i + 1, mid + 1];
         }
     }
+    */
+
+    // 时间复杂度 O(n)  对撞指针解法
+    let left = 0,
+        right = numbers.length - 1;
+    while (left < right) {
+        if (numbers[left] + numbers[right] == target) {
+            return [left + 1, right + 1]
+        } else if (numbers[left] + numbers[right] < target) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    throw 'no solution';
+
 };
