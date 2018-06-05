@@ -22,7 +22,7 @@ var threeSumClosest = function(nums, target) {
 
     // return ret;
 
-    // 先排序，后对撞指针。 运行时间超过100%
+    // 快排成有序数组，后对撞指针。 运行时间超过100%
     QSort(nums, 0, nums.length - 1);
     let n = nums.length;
     let ret = nums[0] + nums[1] + nums[nums.length - 1];
