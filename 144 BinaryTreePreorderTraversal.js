@@ -9,7 +9,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-// 递归写法
+// 递归解法
 var preorderTraversal = function(root) {
     let ret = [];
     if (root != null) {
@@ -21,6 +21,7 @@ var preorderTraversal = function(root) {
     return ret;
 };
 
+// 迭代解法
 var preorderTraversal = function(root) {
     let ret = [];
     let stack = [];
