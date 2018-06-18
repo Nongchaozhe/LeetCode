@@ -34,9 +34,7 @@ var preorderTraversal = function(root) {
         if (cmd.name == 'print') {
             ret.push(cmd.node.val);
         } else if (cmd.name == 'go') {
-            if (cmd.node.right != null) {
-                stack.push(new Command('go', cmd.node.right))
-            };
+            if (cmd.node.right != null) stack.push(new Command('go', cmd.node.right));
             if (cmd.node.left != null) stack.push(new Command('go', cmd.node.left));
             stack.push(new Command('print', cmd.node));
         }
