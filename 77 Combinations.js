@@ -18,8 +18,10 @@ var combine = function(n, k) {
             return;
         }
 
-
-        for (let i = start; i <= n; i++) {
+        // 还有k-a.length个空位，[i,n]中至少要有k-a.length个元素
+        // i最大为n-(k-a.length)+1 ->相对于i<=n的边界，此处为回溯法的剪枝优化
+        for (let i = start; i <= (n - (k - a.length) + 1); i++) {
+            // for (let i = start; i <= n; i++) {
             a.push(i);
             getCombination(n, k, i + 1, a);
             a.pop();
