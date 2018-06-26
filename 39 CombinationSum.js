@@ -11,7 +11,7 @@ var combinationSum = function(candidates, target) {
 
     function generateCombinationSum(nums, target, s, sum, start) {
         if (sum == target) {
-            ret.push(s.slice());
+            ret.push([...s]);
             return;
         }
 
