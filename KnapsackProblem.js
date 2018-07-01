@@ -4,8 +4,7 @@
  * @param {number} C
  * @return {number}
  */
-常规回溯
-
+// 常规回溯
 function knapsack01(w, v, C) {
     return bestValue(w, v, w.length - 1, C);
 }
@@ -50,3 +49,36 @@ function knapsack01(w, v, C) {
         return res;
     }
 }
+
+//-------  动态规划
+function knapsack01(w, v, C) {
+    let n = w.length;
+    if (n == 0) return 0;
+    let memo = new Array(n);
+    for (let i = 0; i < n; i++) {
+        memo[i] = new Array();
+        for (var j = 0; j < C + 1; j++) {
+            memo[i][j] = -1;
+        }
+    }
+
+    for (let i = 0; i <= C; i++) {
+        memo[0][i] = (i >= w[0] ? v[0] : 0); //填充i=0行
+    }
+
+    for (let i = 1; i < n; i++) {
+        for (let j = 0; j <= C; j++) {
+            memo[i][j] = memo[i - 1][j]; //No.i不放入背包
+            if (j >= w[i]) {
+                memo[i][j] = Math.max(memo[i][j], v[i] + memo[i - 1][j - w[i]]);
+            }
+        }
+    }
+    return memo[n - 1][C];
+}
+
+
+let w = [1, 2, 3];
+let v = [6, 10, 12];
+let C = 5;
+console.log(knapsack01(w, v, C));
