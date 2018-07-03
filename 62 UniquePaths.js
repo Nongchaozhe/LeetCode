@@ -24,21 +24,18 @@ var uniquePaths = function(m, n) {
 var uniquePaths = function(m, n) {
     let memo = new Array(m + 1);
     for (let i = 0; i <= m; i++) {
-        memo[i] = new Array(n);
+        memo[i] = new Array(n + 1);
         for (let j = 0; j <= n; j++) {
-            memo[i][j] = -1;
+            memo[i][j] = 0;
         }
     }
 
     memo[1][1] = 1;
     for (let i = 1; i <= m; i++) {
         for (let j = 1; j <= n; j++) {
-            if (memo[i][j] != -1) continue;
-            if (i > 1 && j > 1) memo[i][j] = memo[i - 1][j] + memo[i][j - 1];
-            if (i > 1 && j == 1) memo[i][j] = memo[i - 1][j];
-            if (j > 1 && i == 1) memo[i][j] = memo[i][j - 1];
+            if (memo[i][j]) continue;
+            memo[i][j] = memo[i - 1][j] + memo[i][j - 1];
         }
     }
-
     return memo[m][n];
 };
