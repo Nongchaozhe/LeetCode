@@ -37,4 +37,11 @@ var countNodes = function(root) {
         }
         return ret;
     }
+
+    // 递归解法相对耗时。需要利用好完全二叉树性质
+    // if (root === null) return 0;
+    // let ret = 1;
+    // ret += countNodes(root.left);
+    // ret += countNodes(root.right);
+    // return ret;
 };
