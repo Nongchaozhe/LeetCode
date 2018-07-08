@@ -77,8 +77,30 @@ function knapsack01(w, v, C) {
     return memo[n - 1][C];
 }
 
+// 动态规划 - 优化空间复杂度
+// 根据状态转移方程，第i行元素只依赖第i-1行元素，因此只需要保存两行元素
+function CoolKnapsack01(w, v, C) {
+    let n = w.length;
+    if (n == 0) return 0;
+    let memo = new Array(2);
+    for (let i = 0; i < 2; i++) {
+        memo[i] = new Array();
+        for (var j = 0; j < C + 1; j++) {
+            memo[i][j] = -1;
+        }
+    }
 
-let w = [1, 2, 3];
-let v = [6, 10, 12];
-let C = 5;
-console.log(knapsack01(w, v, C));
+    for (let i = 0; i <= C; i++) {
+        memo[0][i] = (i >= w[0] ? v[0] : 0); //填充i=0行
+    }
+
+    for (let i = 1; i < n; i++) {
+        for (let j = 0; j <= C; j++) {
+            memo[i % 2][j] = memo[(i - 1) % 2][j]; //No.i不放入背包
+            if (j >= w[i]) {
+                memo[i % 2][j] = Math.max(memo[i % 2][j], v[i] + memo[(i - 1) % 2][j - w[i]]);
+            }
+        }
+    }
+    return memo[(n - 1) % 2][C];
+}
