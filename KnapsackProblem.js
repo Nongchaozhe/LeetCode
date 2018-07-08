@@ -104,3 +104,31 @@ function CoolKnapsack01(w, v, C) {
     }
     return memo[(n - 1) % 2][C];
 }
+
+// 动态规划
+// 根据状态转移方程，第i行元素只依赖第i-1行元素
+// 第i行元素计算时取的是上一行上边及左边的元素，因此如果只保存一行元素，我们可以右往左进行计算
+function AwesomeKnapsack01(w, v, C) {
+    let n = w.length;
+    if (n == 0) return 0;
+    let memo = new Array(2);
+    for (let i = 0; i < C; i++) {
+        memo[i] = -1;
+    }
+
+    for (let i = 0; i <= C; i++) {
+        memo[i] = (i >= w[0] ? v[0] : 0); //填充i=0行
+    }
+
+    for (let i = 1; i < n; i++) {
+        for (let j = C; j >= w[i]; j--) {
+            memo[j] = Math.max(memo[j], v[i] + memo[j - w[i]]);
+        }
+    }
+    return memo[C];
+}
+
+let w = [1, 2, 3];
+let v = [6, 10, 12];
+let C = 5;
+console.log(AwesomeKnapsack01(w, v, C));
