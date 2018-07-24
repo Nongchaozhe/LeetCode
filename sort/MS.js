@@ -28,11 +28,11 @@ function merge(nums, L, mid, R) {
     if (L == R) return;
     let LArr = new Array(mid - L + 1);
     for (let i = L; i <= mid; i++) {
-        LArr[i - L] = nums[i];
+        LArr[i - L] = nums[i]; //i-L不要错
     }
 
     let i = L;
-    let j = mid + 1;
+    let j = mid + 1; //mid+1不要错
     let k = L;
     for (k = L; k <= R; k++) {
         if (i > mid || j > R) break;
@@ -44,7 +44,7 @@ function merge(nums, L, mid, R) {
             j++;
         }
     }
-    while (i <= mid) {
+    while (i <= mid) { //while不要错
         nums[k++] = LArr[i - L];
         i++;
     }
