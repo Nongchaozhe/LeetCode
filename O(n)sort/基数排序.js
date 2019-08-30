@@ -28,5 +28,4 @@ function radixSort(arr, maxDigit) {
 
 var array = [12, 123, 18, 18, 30, 1, 0, 1];
 radixSort(array, 3);
-// radixSort1(array, 3);
 console.log(array);
